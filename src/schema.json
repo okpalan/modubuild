@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "config": {
+      "type": "object",
+      "properties": {
+        "entryPoints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "outputDir": {
+          "type": "string"
+        },
+        "commands": {
+          "type": "object",
+          "properties": {
+            "bootstrap": {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": ["description"]
+            },
+            "build": {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "type": "string"
+                },
+                "configPath": {
+                  "type": "string"
+                }
+              },
+              "required": ["description", "configPath"]
+            },
+            "test": {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "type": "string"
+                },
+                "configPath": {
+                  "type": "string"
+                }
+              },
+              "required": ["description", "configPath"]
+            },
+            "deploy": {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "type": "string"
+                },
+                "configPath": {
+                  "type": "string"
+                },
+                "destination": {
+                  "type": "string"
+                }
+              },
+              "required": ["description", "configPath", "destination"]
+            }
+          },
+          "required": ["bootstrap", "build", "test", "deploy"]
+        },
+        "logging": {
+          "type": "object",
+          "properties": {
+            "level": {
+              "type": "string",
+              "enum": ["error", "warn", "info", "debug"]
+            },
+            "reportingEndpoint": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "required": ["level", "reportingEndpoint"]
+        }
+      },
+      "required": ["entryPoints", "outputDir", "commands", "logging"]
+    }
+  },
+  "required": ["config"]
+}

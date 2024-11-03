@@ -1,0 +1,12 @@
+{
+  "name": "modubuild",
+  "version": "0.0.0",
+  "main": "index.js",
+  "scripts": {
+    "bootstrap": "node src/cli.js bootstrap",
+    "build": "node src/cli.js build $npm_config_configPath",
+    "test": "node src/cli.js test $npm_config_configPath",
+    "deploy": "node src/cli.js deploy $npm_config_configPath $npm_config_destination"
+  },
+  "license": "ISC"
+}

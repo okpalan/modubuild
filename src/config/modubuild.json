@@ -1,0 +1,28 @@
+{
+  "config": {
+    "entryPoints": ["src/index.js"],
+    "outputDir": "dist",
+    "commands": {
+      "bootstrap": {
+        "description": "Bootstrap the project"
+      },
+      "build": {
+        "description": "Build the project",
+        "configPath": "./config.json"
+      },
+      "test": {
+        "description": "Run tests",
+        "configPath": "./test/config.json"
+      },
+      "deploy": {
+        "description": "Deploy the project",
+        "configPath": "./deploy/config.json",
+        "destination": "https://example.com/deploy"
+      }
+    },
+    "logging": {
+      "level": "info",
+      "reportingEndpoint": "https://example.com/logs"
+    }
+  }
+}
