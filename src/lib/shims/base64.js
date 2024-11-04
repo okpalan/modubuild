@@ -1,20 +1,29 @@
+// shims/base64.js
 
 // Base64 encoding function
 function encode(input) {
-    if (typeof btoa === 'function') {
-      return btoa(input);
+    // Convert the input to a binary string
+    let binaryString = '';
+    for (let i = 0; i < input.length; i++) {
+      binaryString += String.fromCharCode(input.charCodeAt(i));
     }
-    // Fallback if btoa is not available
-    return Buffer.from(input, 'binary').toString('base64');
+  
+    // Use btoa for encoding in browsers
+    return typeof btoa === 'function' ? btoa(binaryString) : binaryString;
   }
   
   // Base64 decoding function
   function decode(input) {
-    if (typeof atob === 'function') {
-      return atob(input);
+    // Use atob for decoding in browsers
+    const binaryString = typeof atob === 'function' ? atob(input) : input;
+  
+    // Convert binary string back to original string
+    let result = '';
+    for (let i = 0; i < binaryString.length; i++) {
+      result += String.fromCharCode(binaryString.charCodeAt(i));
     }
-    // Fallback if atob is not available
-    return Buffer.from(input, 'base64').toString('binary');
+    
+    return result;
   }
   
   // Export functions for use in other parts of the project
