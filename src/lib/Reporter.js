@@ -1,6 +1,27 @@
 const fs = require('fs');
 const path = require('path');
 
+/**
+
+const reporter = new Reporter({
+  level: 'debug',
+  reportingEndpoint: 'https://api.example.com/logs',
+  pollingInterval: 5000,
+  allowReportingAll: false,
+  maxRetries: 3,
+  batchSize: 10,
+  rotationSize: 5 * 1024 * 1024 // 5MB
+});
+
+// Using convenience methods
+reporter.info('Application started');
+reporter.error('Failed to connect to database');
+reporter.debug('Processing request');
+
+// Or using the general log method
+reporter.log('warn', 'Disk space running low');
+
+ */
 class Reporter {
   static LEVELS = Object.freeze({
     ERROR: 0,
