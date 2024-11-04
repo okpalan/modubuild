@@ -4,6 +4,34 @@ const url = require('url');
 const path = require('path');
 const crypto = require('crypto');
 
+/**
+ * const AeroSSR = require('./aerossr');
+
+const server = new AeroSSR({
+  port: 3000,
+  cacheMaxAge: 3600,
+  corsOrigins: '*',
+  compression: true,
+  defaultMeta: {
+    title: 'My App',
+    description: 'My awesome application'
+  }
+});
+
+// Add custom middleware
+server.use(async (req, res) => {
+  console.log(`${req.method} ${req.url}`);
+});
+
+// Add custom route
+server.route('/api/status', async (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  res.end(JSON.stringify({ status: 'ok' }));
+});
+
+// Start the server
+server.start().catch(console.error);
+ */
 class AeroSSR {
   constructor(config = {}) {
     this.config = {

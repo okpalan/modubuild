@@ -8,6 +8,33 @@ const ValidationError = class extends Error {
   }
 };
 
+/**
+ * @usage
+const SchemaValidator = require('./validator');
+// Create validator instance with options
+const validator = new SchemaValidator({
+  strictAdditionalProperties: true,
+  maxErrors: 100,
+  customFormats: {
+    'phone': (value) => /^\+?[\d\s-]{10,}$/.test(value)
+  }
+});
+
+// Validate data against schema
+const schema = require('./schema.json');
+const data = require('./modubuild.json');
+
+const result = validator.validateSchema(data, schema);
+
+if (result.isValid) {
+  console.log('Validation successful!');
+} else {
+  console.log('Validation failed with the following errors:');
+  result.errors.forEach(error => {
+    console.log(`- Path ${error.path}: ${error.message}`);
+  });
+}
+ */
 class SchemaValidator {
   constructor(options = {}) {
     this.options = {
