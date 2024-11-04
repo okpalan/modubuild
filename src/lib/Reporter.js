@@ -29,7 +29,6 @@ class Reporter {
     this.maxRetries = maxRetries;
     this.batchSize = batchSize;
     this.rotationSize = rotationSize;
-
     this.logDirectory = logDirectory;
     this.logFilePath = path.join(logDirectory, 'error.log');
     this.pendingReports = [];

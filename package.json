@@ -2,6 +2,7 @@
   "name": "modubuild",
   "version": "0.0.0",
   "main": "index.js",
+  "description": "A modular build system",
   "scripts": {
     "bootstrap": "node src/cli.js bootstrap",
     "build": "node src/cli.js build $npm_config_configPath",
