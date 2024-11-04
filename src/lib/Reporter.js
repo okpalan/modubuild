@@ -102,6 +102,7 @@ class Reporter {
     const logLevel = this.allowReportingAll ? levels.ERROR : levels[messageLevel.toUpperCase()];
     return logLevel <= levels[this.level.toUpperCase()];
   }
+  
   getFileMetadata() {
     const currentFile = path.basename(__filename); // Current file name
     const currentFilePath = path.resolve(__filename); // Current file path
