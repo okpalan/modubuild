@@ -102,28 +102,37 @@ class Reporter {
     const logLevel = this.allowReportingAll ? levels.ERROR : levels[messageLevel.toUpperCase()];
     return logLevel <= levels[this.level.toUpperCase()];
   }
+  getFileMetadata() {
+    const currentFile = path.basename(__filename); // Current file name
+    const currentFilePath = path.resolve(__filename); // Current file path
+    const dependencies = Object.keys(require('./package.json').dependencies); // Dependencies from package.json
+
+    return {
+      fileName: currentFile,
+      filePath: currentFilePath,
+      dependencies: dependencies
+    };
+  }
 
   log(level, message) {
     try {
       this.validateLevel(level);
-      
-      if (!this.shouldLog(level)) {
-        return;
-      }
+      if (!this.shouldLog(level)) return;
 
       const formattedMessage = this.formatMessage(level, message);
-      
-      // Check and rotate log file if needed
       this.rotateLogFileIfNeeded();
 
+      // Include file metadata in the log
+      const metadata = this.getFileMetadata();
+      const logEntry = `${formattedMessage} | Metadata: ${JSON.stringify(metadata)}`;
+      
       // Write to console and file
-      console.log(formattedMessage);
-      fs.appendFileSync(this.logFilePath, formattedMessage + '\n');
+      console.log(logEntry);
+      fs.appendFileSync(this.logFilePath, logEntry + '\n');
 
-      // Add to pending reports if endpoint is configured
       if (this.reportingEndpoint) {
         this.pendingReports.push({
-          message: formattedMessage,
+          message: logEntry,
           timestamp: Date.now(),
           level
         });
