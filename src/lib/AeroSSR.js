@@ -292,4 +292,4 @@ class AeroSSR {
   }
 }
 
-module.exports = AeroSSR
+module.exports = AeroSSR;
