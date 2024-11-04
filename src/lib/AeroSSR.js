@@ -5,7 +5,7 @@ const path = require('path');
 const crypto = require('crypto');
 
 /**
- * const AeroSSR = require('./aerossr');
+const AeroSSR = require('./AeroSSR');
 
 const server = new AeroSSR({
   port: 3000,
